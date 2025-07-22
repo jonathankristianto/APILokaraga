@@ -37,6 +37,7 @@ class jenismemberController extends Controller
         return new jenismemberResource ($jenismember->loadMissing('user'));
     }
 
+    //ini fungsi edit jenis member
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
