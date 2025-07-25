@@ -18,12 +18,17 @@ class pesananController extends Controller
         return response()->json([
             "data" => pesananResource::collection($pesanan),
         ]);
-        //pesananResource::collection($pesanan);
     }
 
     public function show($id)
     {
-        $pesanan = pesanan::findOrfail($id);
+        $pesanan = pesanan::where('id', $id)->first();
+
+        if ($pesanan == null) {
+            return response()->json([
+                'message' => 'Pesanan tidak ditemukan'
+            ], 404);
+        }
         return new pesananResource($pesanan);
     }
 
