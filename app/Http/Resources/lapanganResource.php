@@ -8,9 +8,10 @@ class lapanganResource extends JsonResource
 {
     public function toArray($request)
     {
-       $jenisolahraga = $this->whenLoaded('jenisolahraga');
-       $member = $this->whenLoaded('member');
-       $user = $this->whenLoaded('user');
+
+        $this->loadMissing(["user","jenisolahraga"]);
+        $User = $this->user;
+        $Jenisolahraga = $this->jenisolahraga;
 
         return [
             'id' => $this->id,
@@ -21,8 +22,8 @@ class lapanganResource extends JsonResource
             'jam_buka_operasional' => $this->jam_buka_operasional,
             'jam_tutup_operasional' => $this->jam_tutup_operasional,
             'foto' => $this->foto,
-            'user_id' => $user->nama,
-            'jenis_olahraga_id' => $jenisolahraga->nm_jenisolahraga
+            'user_id' => $User->nama,
+            'jenis_olahraga_id' => $Jenisolahraga->nm_jenisolahraga
         ];
     }
 }

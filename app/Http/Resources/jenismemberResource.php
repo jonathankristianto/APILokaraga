@@ -14,7 +14,8 @@ class jenismemberResource extends JsonResource
      */
     public function toArray($request)
     {
-        $user = $this->whenLoaded('user');
+        $this->loadMissing(["user"]);
+        $User = $this->user;
 
         return [
             'id' => $this->id,
@@ -22,7 +23,7 @@ class jenismemberResource extends JsonResource
             'masa_berlaku' => $this->masa_berlaku,
             'harga' => $this->harga,
             'deskripsi' => $this->deskripsi,
-            'user_id' => $user->nama
+            'user_id' => $User->nama
         ];
     }
 }
