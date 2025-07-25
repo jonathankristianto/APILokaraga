@@ -12,7 +12,6 @@ class jadwal extends Model
 
     protected $table = 'jadwal';
     protected $fillable = [
-        'tanggal',
         'jam_mulai',
         'jam_selesai',
         'lapangan_id'

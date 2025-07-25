@@ -22,7 +22,6 @@ class pesananResource extends JsonResource
             'user_id' => $User->nama,
             'lapangan_id' => $Lapangan->nm_lapangan,
             'jadwal_id' => [
-                'tanggal' => $Jadwal->tanggal,
                 'jam_mulai' => $Jadwal->jam_mulai,
                 'jam_selesai' => $Jadwal->jam_selesai,
             ]

@@ -37,11 +37,12 @@ class pesananController extends Controller
         $validated = $request->validate([
             'lapangan_id' => 'required|exists:lapangan,id',
             'jadwal_id' => 'required|exists:jadwal,id',
+            'tanggal' => 'required|date',
         ]);
 
         $jadwal = jadwal::findOrfail($validated['jadwal_id']);
         $lapangan = lapangan::findOrfail($validated['lapangan_id']);
-        $pesanan = pesanan::where('jadwal_id', $validated['jadwal_id'])->first();
+        $pesanan = pesanan::where('jadwal_id', $validated['jadwal_id'])->where('tanggal', $validated['tanggal'])->where('lapangan_id', $validated['lapangan_id'])->first();
 
         if ($pesanan) {
             return response()->json([
@@ -50,7 +51,7 @@ class pesananController extends Controller
         }
 
         $request['user_id'] = Auth::user()->id;
-        $request['tanggal'] = $jadwal->tanggal;
+        $request['tanggal'] = $validated['tanggal'];
         $request['jam_mulai'] = $jadwal->jam_mulai;
         $request['jam_selesai'] = $jadwal->jam_selesai;
         $request['total_harga'] = $lapangan->harga;
