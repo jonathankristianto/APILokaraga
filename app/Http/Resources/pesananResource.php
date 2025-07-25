@@ -8,9 +8,8 @@ class pesananResource extends JsonResource
 {
     public function toArray($request)
     {
-        $this->loadMissing(["user","promo","lapangan","jadwal"]);
+        $this->loadMissing(["user","lapangan","jadwal"]);
         $User = $this->user;
-        $Promo = $this->promo;
         $Lapangan = $this->lapangan;
         $Jadwal = $this->jadwal;
 

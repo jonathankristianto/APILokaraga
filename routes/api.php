@@ -27,6 +27,7 @@ Route::delete('/Deletelapangan/{id}', [lapanganController::class, 'destroy'])->m
 
 Route::get('/pesanan',[pesananController::class, 'index']);
 Route::get('/pesanan/{id}',[pesananController::class, 'show']);
+Route::post('/Createpesanan', [pesananController::class, 'store'])->middleware(['auth:sanctum']);
 
 Route::get('/role',[roleController::class, 'index']);
 Route::get('/role/{id}',[roleController::class, 'show']);
