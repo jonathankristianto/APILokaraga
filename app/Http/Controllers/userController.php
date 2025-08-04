@@ -76,4 +76,13 @@ class userController extends Controller
 
         return new userResource ($user->loadMissing('role'));
     }
+
+    public function getByRole($role)
+    {
+        $users = User::whereHas('role', function ($query) use ($role) {
+            $query->where('nama_role', $role); 
+        })->get();
+
+        return response()->json($users);
+    }
 }

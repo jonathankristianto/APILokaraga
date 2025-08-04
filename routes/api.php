@@ -15,6 +15,7 @@ use App\Http\Controllers\jenisolahragaController;
 use App\Http\Controllers\authenticationController;
 use App\Http\Resources\memberResource;
 
+Route::get('/user/role/{role}', [userController::class,'getByRole']);
 Route::post('/login', [authenticationController::class, 'login']);
 Route::get('/logout', [authenticationController::class, 'logout'])->middleware(['auth:sanctum']);
 Route::get('/profile', [authenticationController::class, 'profile'])->middleware(['auth:sanctum']);
