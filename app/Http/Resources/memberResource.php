@@ -14,15 +14,17 @@ class memberResource extends JsonResource
      */
     public function toArray($request)
     {
-        $this->loadMissing(["user","jenismember"]);
+        $this->loadMissing(["user","jenismember","lapangan"]);
         $User = $this->user;
         $Jenismember = $this->jenismember;
+        $Lapangan = $this->lapangan;
 
         return [
             'id' => $this->id,
             'tgl_mulai' => $this->tgl_mulai,
             'tgl_selesai' => $this->tgl_selesai,
             'user_id' => $User->nama,
+            'lapangan_id' => $Lapangan->nm_lapangan,
             'jenismember_id' => $Jenismember->nm_membership
         ];
     }

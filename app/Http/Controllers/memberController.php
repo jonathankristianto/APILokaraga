@@ -12,14 +12,14 @@ class memberController extends Controller
 {
     public function index()
     {
-        $member = member::all()->load('user','jenismember');
+        $member = member::all()->load('user','lapangan','jenismember');
          return memberResource::collection($member);
     }
 
     public function show($id)
     {
         $member = member::findOrfail($id);
-        $member->load('user','jenismember');
+        $member->load('user','lapangan','jenismember');
         return new memberResource($member);
     }
 
@@ -29,11 +29,12 @@ class memberController extends Controller
             'tgl_mulai' => 'required|date',
             'tgl_selesai' => 'required|date',
             'user_id' => 'required|exists:user,id',
+            'lapangan_id' => 'required|exists:lapangan,id',
             'jenismember_id' => 'required|exists:jenis_member,id',
         ]);
 
         //$request['user_id'] = Auth::user()->id;
         $member = member::create($request->all());
-        return new memberResource ($member->loadMissing('user','jenismember'));
+        return new memberResource ($member->loadMissing('user','lapangan','jenismember'));
     }
 }

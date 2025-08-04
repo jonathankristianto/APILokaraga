@@ -22,7 +22,8 @@ class lapanganResource extends JsonResource
             'jam_buka_operasional' => $this->jam_buka_operasional,
             'jam_tutup_operasional' => $this->jam_tutup_operasional,
             'foto' => $this->foto,
-            'user_id' => $User->nama,
+            'user_id' => $User->id,
+            'user_nama' => $User->nama,
             'jenis_olahraga_id' => $Jenisolahraga->nm_jenisolahraga
         ];
     }

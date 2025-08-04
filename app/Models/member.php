@@ -15,6 +15,7 @@ class member extends Model
         'tgl_mulai',
         'tgl_selesai',
         'user_id',
+        'lapangan_id',
         'jenismember_id'
     ];
 
@@ -30,6 +31,6 @@ class member extends Model
 
     public function lapangan () 
     {
-        return $this->belongsTo(lapangan::class);
+        return $this->belongsTo(lapangan::class, 'lapangan_id');
     }
 }
