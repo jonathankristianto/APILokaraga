@@ -22,7 +22,7 @@ class lapanganController extends Controller
             return $query->where('user_id', $userId);
         })->get();
 
-        return response()->json(['data' =>$lapangan]);
+        return lapanganResource::collection($lapangan);
 
     }
 
