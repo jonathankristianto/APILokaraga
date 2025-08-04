@@ -11,10 +11,19 @@ use App\Http\Resources\lapanganDetailResource;
 
 class lapanganController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $lapangan = lapangan::all()->load('jenisolahraga','user');
-        return lapanganResource::collection($lapangan);
+        /*$lapangan = lapangan::all()->load('jenisolahraga','user');
+        return lapanganResource::collection($lapangan);*/
+
+        $userId = $request->query('user_id');
+
+        $lapangan = lapangan::when($userId, function ($query, $userId) {
+            return $query->where('user_id', $userId);
+        })->get();
+
+        return response()->json(['data' =>$lapangan]);
+
     }
 
     public function show($id)
